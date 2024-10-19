@@ -4,6 +4,6 @@
 
  - [ ] README
  - [ ] Display :
-    - [ ] Get terminal size
-    - [ ] Get color support
+    - [X] Get terminal size
+    - [X] Get color support
     - [ ] 

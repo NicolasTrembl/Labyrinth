@@ -6,4 +6,9 @@
  - [ ] Display :
     - [X] Get terminal size
     - [X] Get color support
-    - [ ] 
+    - [X] Get keypress
+    - [X] Draw loop
+ - [ ] Generate :
+    - [ ] Add generation following 
+ - [ ] Solve :
+ - [ ] Settings :

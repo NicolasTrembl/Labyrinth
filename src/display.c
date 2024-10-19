@@ -158,3 +158,57 @@ bool showTabSelected(display* d, int tabCount, int selectedTab) {
 
     return true;
 }
+
+bool showVertex(display* d, int vertex, graph* g) {
+    if (d == NULL) {
+        return false;
+    }
+
+    if (g == NULL) {
+        return false;
+    }
+
+    COORD coord;
+    coord.X = (vertex * CELL_SIZE) % (d->size.x / 2);
+    coord.Y = ((vertex * CELL_SIZE) - coord.X) / d->size.y;
+
+    SetConsoleCursorPosition(d->hConsole, coord);
+    printf("#");
+    if (coord.Y > 0 && g->edges[vertex][vertex - (d->size.x / CELL_SIZE * 2)] == 1) {
+        printf(" ");
+    } else {
+        printf("#");
+    }
+    printf("#");
+
+    coord.Y++;
+    coord.X -= CELL_SIZE;
+    
+    SetConsoleCursorPosition(d->hConsole, coord);
+    if (coord.X > 0 && g->edges[vertex][vertex - 1] == 1) {
+        printf(" ");
+    } else {
+        printf("#");
+    }
+    printf(" ");
+    if (coord.X + CELL_SIZE < d->size.x / 2 && g->edges[vertex][vertex + 1] == 1) {
+        printf(" ");
+    } else {
+        printf("#");
+    }
+
+
+    coord.Y++;
+    coord.X -= CELL_SIZE;
+
+    SetConsoleCursorPosition(d->hConsole, coord);
+    printf("#");
+    if (coord.Y * CELL_SIZE < d->size.y && g->edges[vertex][vertex + (d->size.x / CELL_SIZE * 2)] == 1) {
+        printf(" ");
+    } else {
+        printf("#");
+    }
+    printf("#");
+
+    return true;
+}

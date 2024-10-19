@@ -4,8 +4,10 @@
 
 #include "display.h"
 #include "type.h"
+#include "graph.h"
 
 #define FPS 10
+
 
 #define TABS 4
 #define TABS_TEXT {"Generate", "Solve", "Settings", "Exit"}
@@ -13,6 +15,7 @@
 
 int main() {
     display* d = getDisplay();
+
 
     if (d == NULL) {
         fprintf(stderr, "Error getting display\n");
@@ -28,6 +31,7 @@ int main() {
     showTabs(d, TABS, (char*[])TABS_TEXT);
     showTabSelected(d, TABS, selectedTab);
 
+    graph* g = createEmptyGraph((d->size.x * d->size.y) / (CELL_SIZE * CELL_SIZE));
 
     DWORD start = GetTickCount();
 
@@ -43,6 +47,10 @@ int main() {
             switch (key) {
                 case 'q':
                     running = false;
+                break;
+
+                case 'r':
+                    naiveGenerate(d, g);
                 break;
                 
                 case 0x48:
